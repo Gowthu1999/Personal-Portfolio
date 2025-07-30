@@ -7,4 +7,10 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ['lucide-react'],
   },
+  // Ensure proper handling of static assets
+  publicDir: 'public',
+  build: {
+    // Copy public folder contents to dist root
+    copyPublicDir: true,
+  },
 });

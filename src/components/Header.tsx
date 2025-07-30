@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Menu, X, Download } from 'lucide-react';
+import { downloadResume } from '../utils/downloadUtils';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isDownloading, setIsDownloading] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -14,7 +16,7 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToSection = (id) => {
+  const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
@@ -22,14 +24,13 @@ const Header = () => {
     }
   };
 
-  const downloadResume = () => {
-    const link = document.createElement('a');
-    link.href = '../../public/GowthamJenarthananResume.pdf'; // From public folder
-    // link.href = '../../public/GowthamJenarthananResume.pdf'; // From public folder
-    link.download = '../../public/Gowtham_Jenarthanan_Resume.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+  const handleDownloadResume = async () => {
+    setIsDownloading(true);
+    try {
+      await downloadResume();
+    } finally {
+      setIsDownloading(false);
+    }
   };
 
   return (
@@ -57,11 +58,12 @@ const Header = () => {
 
           <div className="hidden md:flex items-center space-x-4">
             <button
-              onClick={downloadResume}
-              className="flex items-center space-x-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200"
+              onClick={handleDownloadResume}
+              disabled={isDownloading}
+              className="flex items-center space-x-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
             >
-              <Download size={16} />
-              <span>Resume</span>
+              <Download size={16} className={isDownloading ? 'animate-pulse' : ''} />
+              <span>{isDownloading ? 'Downloading...' : 'Resume'}</span>
             </button>
           </div>
 
@@ -88,11 +90,12 @@ const Header = () => {
                 </button>
               ))}
               <button
-                onClick={downloadResume}
-                className="flex items-center space-x-2 mx-4 mt-4 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200"
+                onClick={handleDownloadResume}
+                disabled={isDownloading}
+                className="flex items-center space-x-2 mx-4 mt-4 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
               >
-                <Download size={16} />
-                <span>Download Resume</span>
+                <Download size={16} className={isDownloading ? 'animate-pulse' : ''} />
+                <span>{isDownloading ? 'Downloading...' : 'Download Resume'}</span>
               </button>
             </nav>
           </div>

@@ -26,7 +26,7 @@ const Header = () => {
     const link = document.createElement('a');
     link.href = '../../public/GowthamJenarthananResume.pdf'; // From public folder
     // link.href = '../../public/GowthamJenarthananResume.pdf'; // From public folder
-    link.download = 'Gowtham_Jenarthanan_Resume.pdf';
+    link.download = '../../public/Gowtham_Jenarthanan_Resume.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);

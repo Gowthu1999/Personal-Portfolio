@@ -39,7 +39,7 @@ const About = () => {
               Detail-Oriented Implementation Specialist
             </h3>
             <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-              As a dedicated Implementation Analyst with over 5 years of experience, I specialize in 
+              As a dedicated Implementation Analyst with over 4 years of experience, I specialize in 
               transforming business workflows through strategic CRM and SaaS solutions. My expertise 
               spans across the complete implementation lifecycle - from initial consultation and 
               system design to deployment and ongoing optimization.

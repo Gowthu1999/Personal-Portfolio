@@ -14,7 +14,7 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToSection = (id: string) => {
+  const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
@@ -23,8 +23,13 @@ const Header = () => {
   };
 
   const downloadResume = () => {
-    // In a real implementation, this would trigger a download
-    alert('Resume download functionality would be implemented here');
+    const link = document.createElement('a');
+    link.href = '../../public/GowthamJenarthananResume.pdf'; // From public folder
+    // link.href = '../../public/GowthamJenarthananResume.pdf'; // From public folder
+    link.download = 'Gowtham_Jenarthanan_Resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (
@@ -36,7 +41,7 @@ const Header = () => {
           <div className="text-2xl font-bold text-gray-900">
             Gowtham R J
           </div>
-          
+
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
             {['about', 'experience', 'skills', 'projects', 'contact'].map((item) => (

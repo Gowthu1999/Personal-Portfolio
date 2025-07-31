@@ -50,8 +50,8 @@ export const downloadPublicFile = async (
  */
 export const downloadResume = (): Promise<void> => {
   return downloadPublicFile(
-    'GowthamJenarthananResume.pdf',
-    'Gowtham_Jenarthanan_Resume.pdf'
+    'GowthamRJenarthananResume.pdf',
+    'Gowtham_RJenarthanan_Resume.pdf'
   );
 };
 
